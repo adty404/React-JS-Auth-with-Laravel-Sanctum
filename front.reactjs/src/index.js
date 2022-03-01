@@ -5,12 +5,15 @@ import 'bootstrap'
 import 'bootstrap/dist/css/bootstrap.css'
 import axios from 'axios'
 import reportWebVitals from './reportWebVitals';
+import { RecoilRoot } from 'recoil';
 
 axios.defaults.baseURL = "http://127.0.0.1:8000/api"
 
 ReactDOM.render(
     <StrictMode>
-        <App />
+        <RecoilRoot>
+            <App />
+        </RecoilRoot>
     </StrictMode>,
     document.getElementById('root')
 );

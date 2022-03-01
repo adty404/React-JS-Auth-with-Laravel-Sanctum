@@ -1,13 +1,17 @@
 import React, { useState } from 'react'
 import axios from 'axios'
 import { useNavigate } from 'react-router-dom'
+import { useRecoilState } from 'recoil'
+import { authenticated } from '../../store'
 
 function Login() {
-    let navigate = useNavigate()
+    const [auth, setAuth] = useRecoilState(authenticated)
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
     const [errors, setErrors] = useState([])
     const [message, setMessage] = useState('')
+
+    let navigate = useNavigate()
 
     const credentials = {
         email, password
@@ -18,6 +22,10 @@ function Login() {
         try {
             let response = await axios.post('login', credentials)
             localStorage.setItem('tokenUser', response.data.token)
+            setAuth({
+                check: true,
+                user: response.data.data,
+            })
             navigate("/")
         } catch (e) {
             setErrors(e.response.data.errors)
