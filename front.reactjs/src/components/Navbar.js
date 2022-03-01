@@ -1,10 +1,10 @@
 import React from 'react'
 import { NavLink, Outlet } from 'react-router-dom'
-import { useRecoilState } from 'recoil'
+import { useRecoilValue } from 'recoil'
 import { authenticated } from '../store'
 
 function Navbar() {
-    const [auth, setAuth] = useRecoilState(authenticated)
+    const auth = useRecoilValue(authenticated)
     return (
         <div>
             <nav className="navbar navbar-expand-lg navbar-light bg-white border-bottom py-3">
@@ -20,6 +20,9 @@ function Navbar() {
                             </li>
                             <li className="nav-item">
                                 <NavLink className="nav-link" to="/about">About</NavLink>
+                            </li>
+                            <li className="nav-item">
+                                <NavLink className="nav-link" to="/dashboard">Dashboard</NavLink>
                             </li>
                         </ul>
 
