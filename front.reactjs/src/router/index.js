@@ -16,7 +16,7 @@ function Router(props) {
             <div className="mt-4"></div>
             <Routes>
                 <Route path="/" element={<Home />} />
-                <Route path="/" element={<Authenticated> <Dashboard /> </Authenticated>} />
+                <Route path="/dashboard" element={<Authenticated> <Dashboard /> </Authenticated>} />
                 <Route path="/about" element={<About />} />
                 <Route path="/login" element={<Guest> <Login /> </Guest>} />
                 <Route path="/register" element={<Guest> <Register /> </Guest>} />
