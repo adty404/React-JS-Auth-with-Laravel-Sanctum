@@ -3,7 +3,10 @@ import ReactDOM from 'react-dom';
 import App from './App';
 import 'bootstrap'
 import 'bootstrap/dist/css/bootstrap.css'
+import axios from 'axios'
 import reportWebVitals from './reportWebVitals';
+
+axios.defaults.baseURL = "http://127.0.0.1:8000/api"
 
 ReactDOM.render(
     <StrictMode>

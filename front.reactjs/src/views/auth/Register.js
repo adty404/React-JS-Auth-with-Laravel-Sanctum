@@ -13,7 +13,7 @@ function Register() {
     const store = async (e) => {
         e.preventDefault()
         try {
-            let response = await axios.post('http://127.0.0.1:8000/api/register', record)
+            let response = await axios.post('register', record)
             setName('')
             setEmail('')
             setPassword('')
