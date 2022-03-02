@@ -3,6 +3,9 @@ import { NavLink, Outlet } from 'react-router-dom'
 import { useRecoilState } from 'recoil'
 import { authenticated } from '../store'
 import axios from 'axios'
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import { useEffect } from 'react'
 
 function Navbar() {
     const [auth, setAuth] = useRecoilState(authenticated)
@@ -13,8 +16,25 @@ function Navbar() {
                 check: false
             })
             localStorage.removeItem('tokenUser')
+            toast.success(response.data.message, {
+                position: "top-right",
+                autoClose: 5000,
+                hideProgressBar: true,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+            })
         } catch (e) {
-            console.log(e)
+            toast.error(e, {
+                position: "top-right",
+                autoClose: 5000,
+                hideProgressBar: true,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+            })
         }
     }
 
@@ -65,6 +85,7 @@ function Navbar() {
             </nav>
 
             <Outlet />
+            <ToastContainer />
         </div>
     )
 }
