@@ -1,11 +1,11 @@
 import React, { useState } from 'react'
 import axios from 'axios'
 import { useNavigate } from 'react-router-dom'
-import { useRecoilState } from 'recoil'
+import { useSetRecoilState } from 'recoil'
 import { authenticated } from '../../store'
 
 function Login() {
-    const [auth, setAuth] = useRecoilState(authenticated)
+    const setAuth = useSetRecoilState(authenticated)
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
     const [errors, setErrors] = useState([])

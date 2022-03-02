@@ -1,10 +1,10 @@
-import React, { useEffect } from 'react'
-import { useRecoilState } from 'recoil'
+import { useEffect } from 'react'
+import { useRecoilValue } from 'recoil'
 import { authenticated } from '../store'
 import { useNavigate } from 'react-router-dom'
 
 function Guest({children}) {
-    const [auth, setAuth] = useRecoilState(authenticated)
+    const auth = useRecoilValue(authenticated)
 
     let navigate = useNavigate()
 
@@ -12,7 +12,7 @@ function Guest({children}) {
         if (auth.check) {
             navigate("/")
         }
-    }, [auth.check])
+    }, [auth.check, navigate])
 
     return children
 }

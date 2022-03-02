@@ -1,10 +1,23 @@
 import React from 'react'
 import { NavLink, Outlet } from 'react-router-dom'
-import { useRecoilValue } from 'recoil'
+import { useRecoilState } from 'recoil'
 import { authenticated } from '../store'
+import axios from 'axios'
 
 function Navbar() {
-    const auth = useRecoilValue(authenticated)
+    const [auth, setAuth] = useRecoilState(authenticated)
+    const logout = async () => {
+        try {
+            let response = await axios.post('logout')
+            setAuth({
+                check: false
+            })
+            localStorage.removeItem('tokenUser')
+        } catch (e) {
+            console.log(e)
+        }
+    }
+
     return (
         <div>
             <nav className="navbar navbar-expand-lg navbar-light bg-white border-bottom py-3">
@@ -33,7 +46,7 @@ function Navbar() {
                                         <NavLink className="nav-link" to="/">{auth.user.name}</NavLink>
                                     </li>
                                     <li className="nav-item">
-                                        <NavLink className="nav-link" to="/">Logout</NavLink>
+                                        <button className="nav-link btn" onClick={logout}>Logout</button>
                                     </li>
                                 </ul>
                             :

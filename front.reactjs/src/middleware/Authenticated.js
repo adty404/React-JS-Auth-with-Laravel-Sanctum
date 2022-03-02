@@ -1,10 +1,10 @@
-import React, { useEffect } from 'react'
-import { useRecoilState } from 'recoil'
+import { useEffect } from 'react'
+import { useRecoilValue } from 'recoil'
 import { authenticated } from '../store'
 import { useNavigate } from 'react-router-dom'
 
 function Authenticated({children}) {
-    const [auth, setAuth] = useRecoilState(authenticated)
+    const auth = useRecoilValue(authenticated)
 
     let navigate = useNavigate()
 
@@ -12,7 +12,7 @@ function Authenticated({children}) {
         if (!auth.check) {
             navigate("/login")
         }
-    }, [auth.check])
+    }, [auth.check, navigate])
 
     return children
 }
